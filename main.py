@@ -10,8 +10,8 @@ def main():
     
     print(bookText)
     print(letterCountDict)
-    print(f"The book has {countNumberOfWords(bookText)} words.")
-    
+    # print(f"The book has {countNumberOfWords(bookText)} words.")
+    generateReport(bookText)
 def getBookFile(path):
 
     with open(path) as f:
@@ -39,6 +39,20 @@ def countLetters(text):
         letterCountDictionary[letter] = numOfTotalAppearances    
     return letterCountDictionary    
         
+def generateReport(text):
+    
+    letterDict = countLetters(text)
+    print("--- Begin report of books/frankenstein.txt ---")
+    print(f"The book has {countNumberOfWords(text)} words")
+    
+    sortedLetterDictByWordCount = sorted(letterDict.items(), key=lambda x:x[1], reverse=True)
+    
+    convertedDict = dict(sortedLetterDictByWordCount)
+    
+    for key, value in convertedDict.items():
+        
+        print(f"The {key} character was found {value} times")
+
     
     
 main()
